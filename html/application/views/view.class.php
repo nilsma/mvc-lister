@@ -8,7 +8,7 @@ if(!class_exists('View')) {
     private $ctrl;
     private $title;
     private $page_id;
-    private $headers;
+    private $head_entries;
     
     public function __construct(Model $model, Controller $ctrl, $title, $page_id) {
       $this->model = $model;
@@ -17,57 +17,14 @@ if(!class_exists('View')) {
       $this->page_id = $page_id;
     }
 
-    public function render() {
+    public function render($head, $body, $footer) {
+      $footer = $this->ctrl->buildFooter($footer);
+      
       $html = '';
-
-      $html = $html . $this->buildHead();
-      $html = $html . $this->buildBody();
+      $html = $html . $this->ctrl->buildHead($head, $this->title);
+      $html = $html . $this->ctrl->buildBody($this->page_id, $body, $footer);
 
       echo $html;
-    }
-
-    public function buildHead() {
-      $headers = $this->headers;
-
-      $html = '';
-      $html = $html . '<!DOCTYPE html>' . "\n";
-      $html = $html . '<html>' . "\n";
-      $html = $html . '  <head>' . "\n";
-
-      if(count($headers) > 0) { 
-	foreach($headers as $entry) {
-	  $html = $html . '    ' . $entry;
-	}
-      }
-
-      $html = $html . '    <title>' . $this->title . '</title>' . "\n";
-      $html = $html . '  </head>' . "\n";
-
-      return $html;
-    }
-
-    public function buildBody() {
-      $html = '';
-
-      $html = $html . '  <body id="' . $this->page_id . '">' . "\n";      
-      $html = $html . $this->buildFooter();
-      $html = $html . '  </body>' . "\n";
-      $html = $html . '</html>';
-
-      return $html;
-    }
-
-    public function buildFooter() {
-      $html = '';
-
-      $html = $html . '    <footer>' . "\n";
-      $html = $html . '    </footer>' . "\n";
-
-      return $html;
-    }
-
-    public function setHeaders($headers) {
-      $this->headers = $headers;
     }
 
   }
