@@ -1,0 +1,10 @@
+div#login p {
+    margin-top: 1em;
+    text-align: center;
+}
+
+div#login form {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}

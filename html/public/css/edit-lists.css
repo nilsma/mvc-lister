@@ -1,0 +1,16 @@
+div#add_list,
+div#lists_overview {
+    margin: auto;
+}
+
+div#lists_overview table thead td {
+    border: 0;
+}
+
+div#lists_overview table td {
+    border: 1px solid indianred;
+}
+
+div#lists_overview table td:first-child {
+    padding: 2px 4px;
+}

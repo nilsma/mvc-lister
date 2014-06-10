@@ -1,0 +1,29 @@
+div#edit_password {
+    margin: 1em auto 1em;
+    width: 15em;
+}
+
+div#edit_password form {
+    display: flex;
+    flex-flow: column;
+    font-family: sans-serif;
+}
+
+div#edit_password form input {
+    margin-bottom: 1em;
+}
+
+div#edit_email {
+    margin: 1em auto 1em;
+    width: 15em;
+}
+
+div#edit_email form {
+    display: flex;
+    flex-flow: column;
+    font-family: sans-serif;
+}
+
+div#edit_email form input {
+    margin-bottom: 1em;
+}
