@@ -59,7 +59,7 @@ if(!class_exists('Base_View')) {
                 $html .= '</div>' . "\n";
                 $html .= '<div id="logo">' . "\n";
                 $html .= '<h1><a href="member.php">Lister</a></h1>' . "\n";
-                $html .= '<img id="hamburger" src="../../public/images/hamburger_black_small.png"></img>' . "\n";
+                $html .= '<img id="hamburger" src="../../public/images/hamburger_black_small.png" alt="menu trigger image"/>' . "\n";
                 $html .= '</div> <!-- end #logo -->' . "\n";
                 $html .= $this->buildNavigation();
             } else {

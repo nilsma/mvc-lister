@@ -2,6 +2,8 @@
 /**
  * includes
  */
+require_once 'application/libs/utils.class.php';
+
 require_once 'application/models/base.model.php';
 require_once 'application/models/login.model.php';
 require_once 'application/models/register.model.php';

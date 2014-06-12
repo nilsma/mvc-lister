@@ -24,6 +24,28 @@ if(!class_exists('Edit_Lists_Model')) {
                 $stmt->execute();
                 $stmt->close();
 
+                $query = "DELETE FROM invitations WHERE list_id=?";
+                $query = $db->real_escape_string($query);
+
+                if(!$stmt = $db->prepare($query)) {
+                    throw new Exception($db->error);
+                }
+
+                $stmt->bind_param('i', $list_id);
+                $stmt->execute();
+                $stmt->close();
+
+                $query = "DELETE FROM members WHERE list_id=?";
+                $query = $db->real_escape_string($query);
+
+                if(!$stmt = $db->prepare($query)) {
+                    throw new Exception($db->error);
+                }
+
+                $stmt->bind_param('i', $list_id);
+                $stmt->execute();
+                $stmt->close();
+
                 $query = "DELETE FROM lists WHERE id=? AND owner=?";
                 $query = $db->real_escape_string($query);
 

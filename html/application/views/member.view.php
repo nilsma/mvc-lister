@@ -27,6 +27,7 @@ if(!class_exists('Member_View')) {
         public function buildLists($user_id) {
             $lists = $this->model->getLists($user_id);
 
+            //TODO refactor to controller setCurrentList
             if(isset($_SESSION['chosen'])) {
                 $chosen = $_SESSION['chosen'];
             } else {
@@ -38,32 +39,31 @@ if(!class_exists('Member_View')) {
             $html .= '<h2>My lists:</h2>' . "\n";
 
             if(count($lists) >= 1) {
-                $html .= '<form name="load_list" action="" method="POST">' . "\n";
-                $html .= '<p>';
+                $html .= '<form name="load_list" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
+                $html .= '<p>' . "\n";
                 $html .= '<select name="chosen">' . "\n";
 
                 foreach($lists as $list_id => $title) {
                     if($title == $chosen) {
-                        $html .= '<option value="' . $title . '" selected>' . $title . '</option>' . "\n";
+                        $html .= '<option value="' . $title . '" selected>' . ucfirst($title) . '</option>' . "\n";
                     } else {
-                        $html .= '<option value="' . $title . '">' . $title . '</option>' . "\n";
+                        $html .= '<option value="' . $title . '">' . ucfirst($title) . '</option>' . "\n";
                     }
                 }
 
-                $html .= '</p>';
-
                 $html .= '</select>' . "\n";
-                $html .= '</form>';
+                $html .= '</p>' . "\n";
+                $html .= '</form>' . "\n";
                 $html .= '<button id="toggle_add_list">+</button>' . "\n";
             } else {
-                $html .= '<p>You haven\'t made any lists yet';
+                $html .= '<p>You haven\'t made any lists yet</p>';
                 $html .= '<button id="toggle_add_list">+</button>' . "\n";
             }
 
             $html .= '</div> <!-- end #lists -->' . "\n";
 
             $html .= '<div id="add_list_form">' . "\n";
-            $html .= '<form name="add_list" method="POST" action="">' . "\n";
+            $html .= '<form name="add_list" method="POST" action="' . $_SERVER['PHP_SELF'] . '">' . "\n";
             $html .= '<label for="title">Title: </label>';
             $html .= '<input type="text" name="title" maxlength="30">' . "\n";
             $html .= '<input type="submit" name="submit_list" value="Add list">' . "\n";
@@ -74,6 +74,8 @@ if(!class_exists('Member_View')) {
         }
 
         public function buildItems() {
+
+            //TODO refactor to controller setCurrentList
             if(isset($_SESSION['chosen'])) {
                 $chosen = $_SESSION['chosen'];
             } else {
@@ -97,7 +99,8 @@ if(!class_exists('Member_View')) {
                     } else {
                         $class_name = 'untapped';
                     }
-                    $html .= '<tr><td class="item_name ' . $class_name . '">' . $item['name'] . '</td><td><button class="remove_item">Remove</button></td></tr>' . "\n";
+                    $html .= '<tr><td class="item_name ' . $class_name . '">' . ucfirst($item['name']) . '</td>';
+                    $html .= '<td><button class="remove_item">Remove</button></td></tr>' . "\n";
                 }
 
                 $html .= '</table>' . "\n";
@@ -105,7 +108,7 @@ if(!class_exists('Member_View')) {
                 $html .= '<p>You haven\'t added any items yet';
             }
 
-            $html .= '<form name="add_item" action="" method="POST">' . "\n";
+            $html .= '<form name="add_item" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
             $html .= '<label for="new_item">Item: </label><input name="new_item" type="text" maxlength="30">' . "\n";
             $html .= '<input name="submit_item" type="submit" value="Add item">' . "\n";
             $html .= '</form>' . "\n";

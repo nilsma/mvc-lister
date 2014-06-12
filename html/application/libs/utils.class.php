@@ -12,6 +12,11 @@ if(!class_exists('Utils')) {
             self::$initialized = true;
         }
 
+        public static function washInput($string) {
+            $string = strtolower(strip_tags(trim($string)));
+            return $string;
+        }
+
         /**
          * A function to handle replacing of parameters for the htmlspecialchars function
          * Credits to Mike Robinson [http://php.net/htmlspecialchars]

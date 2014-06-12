@@ -51,6 +51,18 @@ if(!class_exists('Base_Model')) {
             }
         }
 
+        public function listExists($list_title) {
+            $valid = false;
+            $lists = $this->getLists($_SESSION['user_id']);
+            foreach($lists as $id => $title) {
+                if($list_title == $title) {
+                    $valid = true;
+                }
+            }
+
+            return $valid;
+        }
+
         public function usernameExists($username) {
             $id = $this->getUserId($username);
 
@@ -61,8 +73,11 @@ if(!class_exists('Base_Model')) {
             }
         }
 
-        public function getListId($title) {
-            $user_id = $_SESSION['user_id'];
+        public function getListId($title, $user_id = false) {
+            if(!$user_id) {
+                $user_id = $_SESSION['user_id'];
+            }
+
             $lists = $this->getLists($user_id);
             $list_id = 0;
 
@@ -73,6 +88,28 @@ if(!class_exists('Base_Model')) {
             }
 
             return $list_id;
+        }
+
+        public function getListOwnerUsername($list_id) {
+            $db = $this->connect();
+
+            $query = "SELECT username FROM users as u, lists as l WHERE l.id=? AND l.owner=u.id";
+            $query = $db->real_escape_string($query);
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $list_id);
+                $stmt->execute();
+                $stmt->bind_result($username);
+                $stmt->fetch();
+
+                return $username;
+            }
+
+            $stmt->close();
+            $db->close();
         }
 
         public function getLists($user_id) {
@@ -112,6 +149,28 @@ if(!class_exists('Base_Model')) {
             );
 
             return $nav;
+        }
+
+        public function getUsername($user_id) {
+            $db = $this->connect();
+
+            $query = "SELECT username FROM users WHERE id=?";
+            $query = $db->real_escape_string($query);
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $user_id);
+                $stmt->execute();
+                $stmt->bind_result($username);
+                $stmt->fetch();
+
+                return $username;
+            }
+
+            $stmt->close();
+            $db->close();
         }
 
         public function getUserId($username) {

@@ -41,8 +41,7 @@ if(!class_exists('Member_Model')) {
             $sql->close();
         }
 
-        public function insertItem($list_title, $item_name) {
-            $list_id = $this->getListId($list_title);
+        public function insertItem($list_id, $item_name) {
             $sql = $this->connect();
 
             $query = "INSERT INTO items VALUES(NULL, ?, ?, 0)";

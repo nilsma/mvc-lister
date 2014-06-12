@@ -1,4 +1,4 @@
-function updateDatabaseFlag(itemName, callback) {
+function updateDatabaseFlag(item_name, callback) {
     var result;
 
     if (window.XMLHttpRequest) {
@@ -14,7 +14,7 @@ function updateDatabaseFlag(itemName, callback) {
         }
     }
 
-    var param = "toggle=".concat(itemName);
+    var param = "toggle=".concat(item_name);
     xmlhttp.open("POST", "../../member.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(param);
@@ -51,8 +51,8 @@ function initRemoveItem() {
 }
 
 function getItemToRemove(element, callback) {
-    var itemName = element.parentNode.parentNode.childNodes[0].innerHTML;
-    callback(itemName);
+    var item_name = element.parentNode.parentNode.childNodes[0].innerHTML;
+    callback(encodeURIComponent(item_name));
 }
 
 function removeItem(itemName, callback) {

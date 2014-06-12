@@ -1,6 +1,6 @@
 function getListName(element, callback) {
     var list_name = element.parentNode.parentNode.childNodes[0].innerHTML;
-    callback(list_name);
+    callback(encodeURIComponent(list_name));
 }
 
 function removeList(list_name) {
@@ -31,6 +31,11 @@ function initRemoveList() {
     });
 }
 
+function editList() {
+    var list_title = this.parentNode.parentNode.childNodes[0].innerHTML;
+    alert('editing list: ' + list_title);
+}
+
 function toggleMenu() {
     var el = document.getElementById('nav_list');
     if(window.getComputedStyle(el, null).getPropertyValue('display') === 'none') {
@@ -55,6 +60,10 @@ function init() {
     var elements = new Array();
     var elements = document.getElementsByClassName('remove_list');
     addListeners(elements, initRemoveList);
+
+    var elements = new Array();
+    var elements = document.getElementsByClassName('edit_list');
+    addListeners(elements, editList);
 }
 
 window.onload = function() {
