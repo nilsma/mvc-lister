@@ -8,16 +8,35 @@ if(!class_exists('Member_Model')) {
             parent::__construct();
         }
 
-        public function getItems($title) {
-            $list_id = $this->getListId($title);
-            $sql = $this->connect();
+        public function getListTitle($list_id) {
+            $db = $this->connect();
 
-            $query = "SELECT id, name, tapped FROM items WHERE list_id=?";
-            $query = $sql->real_escape_string($query);
+            $query = $db->real_escape_string("SELECT title FROM lists WHERE id=?");
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $list_id);
+                $stmt->execute();
+                $stmt->bind_result($title);
+                $stmt->fetch();
+
+                return $title;
+            }
+
+            $stmt->close();
+            $db->close();
+        }
+
+        public function getItems($list_id) {
+            $db = $this->connect();
+
+            $query = $db->real_escape_string("SELECT id, name, tapped FROM items WHERE list_id=?");
 
             $items = array();
 
-            $stmt = $sql->stmt_init();
+            $stmt = $db->stmt_init();
             if(!$stmt->prepare($query)) {
                 print("Failed to prepare query: " . $query . "\n");
             } else {
@@ -38,7 +57,7 @@ if(!class_exists('Member_Model')) {
             }
 
             $stmt->close();
-            $sql->close();
+            $db->close();
         }
 
         public function insertItem($list_id, $item_name) {

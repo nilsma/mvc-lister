@@ -5,7 +5,7 @@ if(!isset($_SESSION['auth'])) {
     header('Location: index.php');
 }
 
-require_once 'application/libs/config.php';
+require_once '../application/libs/config.php';
 
 $model = new Invitations_Model();
 $ctrl = new Invitations_Controller($model);

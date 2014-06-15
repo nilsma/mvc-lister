@@ -14,7 +14,7 @@ if(!class_exists('About_View')) {
         }
 
         public function render() {
-            include 'application/templates/head.html';
+            include '../application/templates/head.html';
 
             $html = '';
             $html .= $this->buildHeader($this->page_id);
@@ -37,7 +37,7 @@ if(!class_exists('About_View')) {
 
             echo $html;
 
-            include 'application/templates/footer.html';
+            include '../application/templates/footer.html';
         }
     }
 }

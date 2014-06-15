@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'application/libs/config.php';
+require_once '../application/libs/config.php';
 
 $model = new Edit_Member_Model();
 $ctrl = new Edit_Member_Controller($model);

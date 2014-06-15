@@ -7,22 +7,36 @@ if(!class_exists('Invitations_Model')) {
             parent::__construct();
         }
 
-        public function insertMembership($list_id, $user_id) {
+        public function insertMembership($inviter_id, $list_id, $user_id) {
             $db = $this->connect();
 
-            $query = "INSERT INTO members VALUES(NULL, ?, ?)";
+            $query = "INSERT INTO members VALUES(NULL, ?, ?, ?)";
             $query = $db->real_escape_string($query);
 
             $stmt = $db->stmt_init();
             if(!$stmt->prepare($query)) {
                 print("Failed to prepare query: " . $query . "\n");
             } else {
-                $stmt->bind_param('ii', $list_id, $user_id);
+                $stmt->bind_param('iii', $inviter_id, $list_id, $user_id);
                 $stmt->execute();
             }
 
             $stmt->close();
             $db->close();
+        }
+
+        public function membershipExists($user_id, $list_id) {
+            $exists = false;
+            $memberships = $this->getMemberships($user_id);
+
+            foreach($memberships as $membership) {
+                if($membership == $list_id) {
+                    $exists = true;
+                    break;
+                }
+            }
+
+            return $exists;
         }
 
         public function getMemberships($user_id) {
@@ -141,28 +155,6 @@ if(!class_exists('Invitations_Model')) {
                 }
 
                 return $invitations;
-            }
-
-            $stmt->close();
-            $db->close();
-        }
-
-        public function getListTitle($list_id) {
-            $db = $this->connect();
-
-            $query = "SELECT title FROM lists WHERE id=?";
-            $query = $db->real_escape_string($query);
-
-            $stmt = $db->stmt_init();
-            if(!$stmt->prepare($query)) {
-                print("Failed to prepare query: " . $query . "\n");
-            } else {
-                $stmt->bind_param('i', $list_id);
-                $stmt->execute();
-                $stmt->bind_result($list_title);
-                $stmt->fetch();
-
-                return $list_title;
             }
 
             $stmt->close();

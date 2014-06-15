@@ -11,6 +11,7 @@ if(!class_exists('Edit_Lists_Controller')) {
         }
 
         public function removeList($list_name) {
+            $list_name = Utils::washInput($list_name);
             $list_id = $this->model->getListId($list_name);
             $this->model->deleteList($_SESSION['user_id'], $list_id);
         }

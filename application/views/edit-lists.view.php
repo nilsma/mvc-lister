@@ -11,7 +11,7 @@ if(!class_exists('Edit_Lists_View')) {
         }
 
         public function render() {
-            include 'application/templates/head.html';
+            include '../application/templates/head.html';
 
             $html = "\n";
             $html .= $this->buildHeader($this->page_id);
@@ -19,15 +19,22 @@ if(!class_exists('Edit_Lists_View')) {
 
             echo $html;
 
-            include 'application/templates/footer.html';
+            include '../application/templates/footer.html';
         }
 
         public function buildListsOverview() {
-            $lists = $this->model->getLists($_SESSION['user_id']);
+            $lists = $this->model->getOwnLists($_SESSION['user_id']);
 
             $html = '';
+
+            if(isset($_SESSION['errors']) && count($_SESSION['errors']) >= 1) {
+                $html .= $this->buildErrors($_SESSION['errors']);
+                $_SESSION['errors'] = false;
+                unset($_SESSION['errors']);
+            }
+
             $html .= '<div id="add_list">' . "\n";
-            $html .= '<form name="add_list" method="POST" action="">' . "\n";
+            $html .= '<form name="add_list" method="POST" action="' . $_SERVER['PHP_SELF'] . '">' . "\n";
             $html .= '<label for="title">Title: </label>';
             $html .= '<input type="text" name="title" maxlength="30">' . "\n";
             $html .= '<input type="submit" name="submit_list" value="Add list">' . "\n";
@@ -39,8 +46,8 @@ if(!class_exists('Edit_Lists_View')) {
             $html .= '<tr><td>My Lists:</td><td></td><td></td></tr>' . "\n";
             $html .= '</thead>' . "\n";
 
-            foreach($lists as $list) {
-                $html .= '<tr><td>' . $list . '</td><td><button class="edit_list">Edit</button></td><td><button class="remove_list">Remove</button></td></tr>' . "\n";
+            foreach($lists as $list_id => $user_id) {
+                $html .= '<tr><td>' . ucfirst($this->model->getListTitle($list_id)) . '</td><td><button class="edit_list">Edit</button></td><td><button class="remove_list">Remove</button></td></tr>' . "\n";
 
             }
 

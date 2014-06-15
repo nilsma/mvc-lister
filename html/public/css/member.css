@@ -53,6 +53,14 @@ body#member form label {
     display: none;
 }
 
+div#lists option.member {
+    background-color: lightgray;
+}
+
+div#lists option.owner {
+    background-color: white;
+}
+
 div#lists form p:first-child {
     margin-bottom: 1em;
 }

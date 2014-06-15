@@ -4,7 +4,7 @@ header {
 }
 
 div#welcome {
-    display: none;
+    //display: none;
 }
 
 div#welcome p {

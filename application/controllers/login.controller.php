@@ -17,7 +17,7 @@ if(!class_exists('Login_Controller')) {
             }
 
             if(!isset($password) || empty($password)) {
-                $errors[] = 'You must enter your username';
+                $errors[] = 'You must enter your password';
             }
 
             if(!$this->model->validateLogin($username, $password)) {
@@ -25,6 +25,16 @@ if(!class_exists('Login_Controller')) {
             }
 
             return $errors;
+        }
+
+        public function login($username, $password) {
+            $errors = $this->getLoginErrors($username, $password);
+
+            if(count($errors) < 1) {
+                $_SESSION['auth'] = true;
+                $_SESSION['username'] = $_POST['username'];
+                header('Location: member.php');
+            }
         }
 
     }

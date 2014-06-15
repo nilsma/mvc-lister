@@ -11,30 +11,39 @@ if(!class_exists('Invitations_Controller')) {
         }
 
         public function removeMembership($owner_name, $list_title) {
+            $owner_name = Utils::washInput($owner_name);
+            $list_title = Utils::washInput($list_title);
             $owner_id = $this->model->getUserId($owner_name);
             $list_id = $this->model->getListId($list_title, $owner_id);
             $this->model->deleteMembership($list_id, $_SESSION['user_id']);
         }
 
         public function acceptInvitation($inviter_name, $list_title) {
+            $inviter_name = Utils::washInput($inviter_name);
+            $list_title = Utils::washInput($list_title);
             $inviter_id = $this->model->getUserId($inviter_name);
             $list_id = $this->model->getListId($list_title, $inviter_id);
-            $this->model->insertMembership($list_id, $_SESSION['user_id']);
+            $this->model->insertMembership($inviter_id, $list_id, $_SESSION['user_id']);
             $this->model->deleteInvitation($inviter_id, $list_id, $_SESSION['user_id']);
         }
 
         public function declineInvitation($inviter_name, $list_title) {
+            $inviter_name = Utils::washInput($inviter_name);
+            $list_title = Utils::washInput($list_title);
             $inviter_id = $this->model->getUserId($inviter_name);
             $list_id = $this->model->getListId($list_title, $inviter_id);
             $this->model->deleteInvitation($inviter_id, $list_id, $_SESSION['user_id']);
         }
 
         public function cancelInvitation($invited_name, $list_title) {
+            $invited_name = Utils::washInput($invited_name);
+            $list_title = Utils::washInput($list_title);
             $invited_id = $this->model->getUserId($invited_name);
             $list_id = $this->model->getListId($list_title);
             $this->model->deleteInvitation($_SESSION['user_id'], $list_id, $invited_id);
         }
 
+        //TODO move to proper file
         public function invitationExists($user_id, $list_id) {
             $inv_id = $this->model->getInvitation($user_id, $list_id);
             if($inv_id == 0) {
@@ -44,11 +53,20 @@ if(!class_exists('Invitations_Controller')) {
             }
         }
 
-        public function inviteUser($inv_username, $inv_list) {
+        public function inviteUser($username, $list_title) {
             $errors = Array();
+            $username = Utils::washInput($username);
             $inviter_id = $_SESSION['user_id'];
-            $list_id = $this->model->getListId($inv_list);
-            $user_id = $this->model->getUserId($inv_username);
+            $list_id = $this->model->getListId($list_title);
+            $user_id = $this->model->getUserId($username);
+
+            if($username == $_SESSION['username']) {
+                $errors[] = 'You cannot invite yourself.';
+            }
+
+            if($this->model->membershipExists($user_id, $list_id)) {
+                $errors[] = 'User is already subscribing to that list.';
+            }
 
             if($this->invitationExists($user_id, $list_id)) {
                 $errors[] = 'User already invited.';
@@ -58,10 +76,10 @@ if(!class_exists('Invitations_Controller')) {
                 $errors[] = 'There is no such user.';
             }
 
-            if(!count($errors) >= 1) {
-                $this->model->insertInvite($inviter_id, $user_id, $list_id);
+            if(count($errors) >= 1) {
+                $_SESSION['errors'] = $errors;
             } else {
-                $_SESSION['inv_errors'] = $errors;
+                $this->model->insertInvite($inviter_id, $user_id, $list_id);
             }
         }
 

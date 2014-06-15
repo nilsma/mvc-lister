@@ -1,6 +1,6 @@
 <?php
 
-require_once 'application/libs/database.class.php';
+require_once '../application/libs/database.class.php';
 
 if(!class_exists('Base_Model')) {
 
@@ -10,12 +10,12 @@ if(!class_exists('Base_Model')) {
 
         public function insertList($title) {
             $user_id = $_SESSION['user_id'];
-            $sql = $this->connect();
+            $db = $this->connect();
 
             $query = "INSERT INTO lists VALUES(NULL, ?, ?)";
-            $query = $sql->real_escape_string($query);
+            $query = $db->real_escape_string($query);
 
-            $stmt = $sql->stmt_init();
+            $stmt = $db->stmt_init();
             if(!$stmt->prepare($query)) {
                 print("Failed to prepare query: " . $query . "\n");
             } else {
@@ -24,17 +24,16 @@ if(!class_exists('Base_Model')) {
             }
 
             $stmt->close();
-            $sql->close();
+            $db->close();
         }
 
         public function validateLogin($username, $password) {
-            $db = new Database();
-            $sql = $db->connect();
+            $db = $this->connect();
 
             $query = "SELECT password FROM users WHERE username=?";
-            $query = $sql->real_escape_string($query);
+            $query = $db->real_escape_string($query);
 
-            $stmt = $sql->stmt_init();
+            $stmt = $db->stmt_init();
 
             if(!$stmt->prepare($query)) {
                 print("Failed to prepare query: " . $query . "\n");
@@ -49,18 +48,32 @@ if(!class_exists('Base_Model')) {
                     return false;
                 }
             }
+
+            $stmt->close();
+            $db->close();
         }
 
         public function listExists($list_title) {
-            $valid = false;
-            $lists = $this->getLists($_SESSION['user_id']);
-            foreach($lists as $id => $title) {
-                if($list_title == $title) {
-                    $valid = true;
+            $user_id = $_SESSION['user_id'];
+            $db = $this->connect();
+
+            $query = $db->real_escape_string("SELECT title FROM lists WHERE owner=? AND title=?");
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('is', $user_id, $list_title);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->fetch();
+                $num_rows = $stmt->num_rows;
+                if($num_rows >= 1) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
-
-            return $valid;
         }
 
         public function usernameExists($username) {
@@ -78,16 +91,24 @@ if(!class_exists('Base_Model')) {
                 $user_id = $_SESSION['user_id'];
             }
 
-            $lists = $this->getLists($user_id);
-            $list_id = 0;
+            $db = $this->connect();
 
-            foreach($lists as $key => $val) {
-                if($val == $title) {
-                    $list_id = $key;
-                }
+            $query = $db->real_escape_string("SELECT id FROM lists WHERE owner=? AND title=?");
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('is', $user_id, $title);
+                $stmt->execute();
+                $stmt->bind_result($list_id);
+                $stmt->fetch();
+
+                return $list_id;
             }
 
-            return $list_id;
+            $stmt->close();
+            $db->close();
         }
 
         public function getListOwnerUsername($list_id) {
@@ -112,40 +133,89 @@ if(!class_exists('Base_Model')) {
             $db->close();
         }
 
-        public function getLists($user_id) {
-            $sql = $this->connect();
+        public function getMembershipLists($user_id) {
+            $db = $this->connect();
 
-            $query = "SELECT id, title FROM lists WHERE owner=?";
-            $query = $sql->real_escape_string($query);
+            $query = "SELECT owner_id, list_id FROM members WHERE user_id=?";
+            $query = $db->real_escape_string($query);
 
             $lists = array();
 
-            $stmt = $sql->stmt_init();
+            $stmt = $db->stmt_init();
             if(!$stmt->prepare($query)) {
                 print("Failed to prepare query: " . $query . "\n");
             } else {
                 $stmt->bind_param('i', $user_id);
                 $stmt->execute();
-                $stmt->bind_result($id, $title);
+                $stmt->bind_result($owner_id, $list_id);
                 $stmt->store_result();
                 while($stmt->fetch()) {
-                    $lists[$id] = $title;
+                    $lists[$list_id] = $owner_id;
                 }
 
                 return $lists;
             }
 
             $stmt->close();
-            $sql->close();
+            $db->close();
+        }
+
+        public function getListTitle($list_id) {
+            $db = $this->connect();
+
+            $query = "SELECT title FROM lists WHERE id=?";
+            $query = $db->real_escape_string($query);
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $list_id);
+                $stmt->execute();
+                $stmt->bind_result($list_title);
+                $stmt->fetch();
+
+                return $list_title;
+            }
+
+            $stmt->close();
+            $db->close();
+        }
+
+        public function getOwnLists($user_id) {
+            $db = $this->connect();
+
+            $query = "SELECT id FROM lists WHERE owner=?";
+            $query = $db->real_escape_string($query);
+
+            $lists = array();
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $user_id);
+                $stmt->execute();
+                $stmt->bind_result($list_id);
+                $stmt->store_result();
+                while($stmt->fetch()) {
+                    $lists[$list_id] = $_SESSION['user_id'];
+                }
+
+                return $lists;
+            }
+
+            $stmt->close();
+            $db->close();
         }
 
         public function getNavigation() {
             $nav = array(
-                'My Lists' => 'member.php',
-                'My Profile' => 'edit-member.php',
-                'Edit Lists' => 'edit-lists.php',
-                'Invitations' => 'invitations.php',
-                'Logout' => 'logout.php'
+                'my lists' => 'member.php',
+                'my profile' => 'edit-member.php',
+                'edit lists' => 'edit-lists.php',
+                'invitations' => 'invitations.php',
+                'logout' => 'logout.php'
             );
 
             return $nav;

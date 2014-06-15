@@ -12,7 +12,7 @@ if(!class_exists('Invitations_View')) {
         }
 
         public function render() {
-            include 'application/templates/head.html';
+            include '../application/templates/head.html';
 
             $html = "\n";
             $html .= $this->buildHeader($this->page_id);
@@ -23,7 +23,7 @@ if(!class_exists('Invitations_View')) {
 
             echo $html;
 
-            include 'application/templates/footer.html';
+            include '../application/templates/footer.html';
         }
 
         public function buildMemberships() {
@@ -107,33 +107,24 @@ if(!class_exists('Invitations_View')) {
         }
 
         public function buildInviteForm() {
-            $lists = $this->model->getLists($_SESSION['user_id']);
+            $lists = $this->model->getOwnLists($_SESSION['user_id']);
 
             $html = '';
 
             $html .= '<div id="invite">' . "\n";
 
-            if((isset($_SESSION['inv_errors'])) && (count($_SESSION['inv_errors']) >= 1)) {
-                $inv_errors = $_SESSION['inv_errors'];
-                $_SESSION['inv_errors'] = false;
-                unset($_SESSION['inv_errors']);
-
-                $html .= '<div id="errors">' . "\n";
-                $html .= '<ul>' . "\n";
-
-                foreach($inv_errors as $error) {
-                    $html .= '<li>' . $error . '</li>' . "\n";
-                }
-
-                $html .= '</ul>' . "\n";
-                $html .= '</div> <!-- end #invitation_errors -->' . "\n";
+            if(isset($_SESSION['errors']) && count($_SESSION['errors']) >= 1) {
+                $html .= $this->buildErrors($_SESSION['errors']);
+                $_SESSION['errors'] = false;
+                unset($_SESSION['errors']);
             }
 
             if(count($lists) >= 1) {
-                $html .= '<form name="invite_form" action="" method="POST">' . "\n";
+                $html .= '<form name="invite_form" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
                 $html .= '<select name="invite_list_title">' . "\n";
 
-                foreach($lists as $list_id => $title) {
+                foreach($lists as $list_id => $user_id) {
+                    $title = $this->model->getListTitle($list_id);
                     $html .= '<option value="' . $title . '">' . $title . '</option>' . "\n";
                 }
 

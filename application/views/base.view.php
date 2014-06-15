@@ -28,7 +28,11 @@ if(!class_exists('Base_View')) {
             $html .= '<ul id="nav_list">' . "\n";
 
             foreach($nav as $label => $url) {
-                $html .= '<li><a href="' . $url . '">' . $label . '</a></li>' . "\n";
+                if($label == 'logout') {
+                    $html .= '<li><a href="#" onclick="return confirmLogout()">' . ucwords($label) . '</a></li>' . "\n";
+                } else {
+                    $html .= '<li><a href="' . $url . '">' . ucwords($label) . '</a></li>' . "\n";
+                }
             }
 
             $html .= '</ul>' . "\n";
@@ -85,6 +89,21 @@ if(!class_exists('Base_View')) {
 
             $html .= '</ul>' . "\n";
             $html .= '</div> <!-- end #errors -->' . "\n";
+
+            return $html;
+        }
+
+        public function buildSuccess($success) {
+            $html = '';
+            $html .= '<div id="success">' . "\n";
+            $html .= '<ul>' . "\n";
+
+            foreach($success as $succeed) {
+                $html .= '<li>' . $succeed . '</li>' . "\n";
+            }
+
+            $html .= '</ul>' . "\n";
+            $html .= '</div> <!-- end #success -->' . "\n";
 
             return $html;
         }
