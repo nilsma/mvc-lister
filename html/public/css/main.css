@@ -10,7 +10,8 @@ html {
 header,
 footer,
 div.guv {
-    background-color: rgba(242, 134, 54, 1);
+    //background-color: rgba(242, 134, 54, 1);
+    background-color: rgb(255, 200, 90);
     margin: auto;
     padding: 0.5em;
     width: 90%;

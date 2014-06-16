@@ -53,12 +53,16 @@ body#member form label {
     display: none;
 }
 
+div#lists option {
+    background-color: white;
+}
+
 div#lists option.member {
-    background-color: lightgray;
+    //background-color: lightgray;
 }
 
 div#lists option.owner {
-    background-color: white;
+    //background-color: white;
 }
 
 div#lists form p:first-child {
@@ -66,6 +70,7 @@ div#lists form p:first-child {
 }
 
 div#lists form p:first-child select {
+    background-color: white;
     border: 1px solid white;
     color: black;
     font-size: 1em;
@@ -83,8 +88,9 @@ div#lists form select option {
 }
 
 div#items table tr {
-    background-color: green;
-    color: white;
+    background-color: #16C62C;
+    //color: white;
+    font-size: 1.2em;
 }
 
 div#items table td:first-child {
@@ -109,11 +115,15 @@ div#items table td {
 }
 
 div#items table td:first-child.tapped {
-    background-color: rgb(128, 0, 0);
+    //background-color: rgb(128, 0, 0);
+    background-color: rgb(185, 38, 53);
+    color: white;
 }
 
 div#items table td:first-child.untapped {
-    background-color: rgb(0, 128, 0);
+    //background-color: rgb(0, 128, 0);
+    background-color: rgb(8, 173, 68);
+    color: whitesmoke;
 }
 
 form input[type="password"],
