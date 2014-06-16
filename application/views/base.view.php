@@ -43,6 +43,7 @@ if(!class_exists('Base_View')) {
 
         public function buildHeader($page_id) {
             $html = '';
+            $html .= '<meta name="viewport" content="width=device-width, user-scalable=yes">' . "\n";
             $html .= '<link rel="stylesheet" href="../../public/css/main.css">' . "\n";
             $html .= '<link rel="stylesheet" href="../../public/css/navigation.css">' . "\n";
             $html .= '<link rel="stylesheet" href="../../public/css/' . $page_id . '.css">' . "\n";
