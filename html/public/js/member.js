@@ -177,7 +177,6 @@ function updateItems(callback) {
     });
 }
 
-/*
 setInterval(
     function() {
         updateItems(function() {
@@ -185,7 +184,6 @@ setInterval(
         });
     }, 3000
 );
-*/
 
 function init() {
     var elements = new Array();
