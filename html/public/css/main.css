@@ -10,15 +10,21 @@ html {
 header,
 footer,
 div.guv {
-    //background-color: rgba(242, 134, 54, 1);
-    background-color: rgb(255, 200, 90);
+    background-color: rgb(255, 173, 68);
     margin: auto;
     padding: 0.5em;
     width: 90%;
 }
 
+div.guv {
+    border: 1px solid rgb(132, 77, 0);
+}
+
 header {
-    margin-bottom: 2em;
+    border-right: 1px solid rgb(132, 77, 0);
+    border-bottom: 1px solid rgb(132, 77, 0);
+    border-left: 1px solid rgb(132, 77, 0);
+    margin-bottom: 1em;
 }
 
 h1,
@@ -56,7 +62,7 @@ div#inner_container {
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 p {
@@ -72,26 +78,77 @@ td {
     font-size: 1em;
 }
 
+form select {
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+    font-size: 1em;
+    margin-right: 0.5em;
+    outline: none;
+    padding: 3px 3px 0 3px;
+    width: 100%;
+}
+
+form select option {
+    background-color: white;
+    margin-bottom: 2px;
+    padding: 2px 4px;
+    text-indent: 10px;
+}
+
 form input {
     border: 0;
     margin-bottom: 1em;
 }
 
+form input:invalid {
+    box-shadow: none;
+}
+
+form input:required {
+    background-color: white;
+}
+
+table {
+    background-color: white;
+    font-size: 1em;
+}
+
+table tr {
+    background-color: rgb(8, 173, 68);
+}
+
+table td {
+    padding: 0.25em;
+}
+
+table td:last-child {
+    width: 2em;
+}
+
+table td.empty_row {
+    width: 100%;
+}
+
 button,
-div#items table td button,
+table td button,
 input[type="submit"] {
-    background-color: lightblue;
-    box-shadow: 1px 1px 3px #333;
+    background-color: rgb(139, 221, 248);
     border: 0;
     padding: 0.25em;
 }
 
+table td button:hover,
 input[type="submit"]:hover {
+    background-color: white;
     cursor: pointer;
 }
 
+table td button:active,
 input[type="submit"]:active {
+    background-color: black;
     box-shadow: 0px 0px 0px #000;
+    color: white;
     cursor: pointer;
 }
 
@@ -103,7 +160,7 @@ input[type="email"] {
 }
 
 div#errors {
-    background-color: red;
+    background-color: rgb(185, 38, 53);
     margin-top: 1em;
     margin-bottom: 1em;
     padding: 0.5em;
@@ -117,6 +174,7 @@ div#errors ul {
 }
 
 footer {
+    border: 1px solid rgb(132, 77, 0);
     color: white;
     font-family: sans-serif;
     font-size: 1em;
@@ -126,27 +184,128 @@ footer {
 div#login,
 div#registration {
     margin: auto;
-    width: 20em;
 }
 
 div#presentation p,
 div#registration p {
     line-height: 1.5em;
     margin: 1em auto 1em;
-    width: 20em;
 }
 
-@media screen and (max-width: 400px) and (orientation: portrait) {
+p a,
+p a:visited {
+    color: blue;
+}
+
+@media screen and (max-width: 359px) and (orientation: portrait) {
     div#login,
     div#registration {
         margin: auto;
-        width: 20em;
+        width: 95%;
     }
 
     div#presentation p,
     div#registration p {
         line-height: 1.5em;
         margin: 1em auto 1em;
-        width: 20em;
+        width: 95%;
     }
 }
+
+@media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    div#login,
+    div#registration {
+        margin: auto;
+        width: 95%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 768px) and (orientation: portrait) {
+    div#login,
+    div#registration {
+        margin: auto;
+        width: 40%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 639px) and (orientation: landscape) {
+    div#login,
+    div#registration {
+        margin: auto;
+        width: 80%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) and (orientation: landscape) {
+    div#login,
+    div#registration {
+        margin: auto;
+        width: 70%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1919px) and (orientation: landscape) {
+    div#login,
+    div#registration {
+        margin: auto;
+        width: 30%;
+    }
+
+    div#about {
+        line-height: 1.5em;
+        margin: auto;
+        width: 40%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1920px) and (orientation: landscape) {
+    div#login,
+    div#registration,
+    div#about {
+        margin: auto;
+        width: 30%;
+    }
+
+    div#presentation p,
+    div#registration p {
+        line-height: 1.5em;
+        margin: 1em auto 1em;
+        width: 30%;
+    }
+}
+

@@ -123,8 +123,8 @@ if(!class_exists('Member_View')) {
         public function buildAddItemsForm() {
             $html = '';
 
-            $html .= '<form name="add_item" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
-            $html .= '<label for="new_item">Item: </label><input name="new_item" type="text" maxlength="30">' . "\n";
+            $html .= '<form id="add_items_form" name="add_item" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
+            $html .= '<label for="new_item">Item: </label><input name="new_item" type="text" maxlength="60">' . "\n";
             $html .= '<input name="submit_item" type="submit" value="Add item">' . "\n";
             $html .= '</form>' . "\n";
 

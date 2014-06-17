@@ -1,3 +1,7 @@
+div#registration {
+    margin-top: 1em;
+}
+
 div#registration form {
     display: flex;
     flex-flow: column;

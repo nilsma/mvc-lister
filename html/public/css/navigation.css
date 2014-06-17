@@ -3,8 +3,13 @@ header {
     flex-flow: column;
 }
 
-div#welcome {
-    //display: none;
+body#login div#welcome,
+body#login div#logo img,
+body#register div#welcome,
+body#register div#logo img,
+body#about div#welcome,
+body#about div#logo img {
+    display: none;
 }
 
 div#welcome p {
@@ -53,7 +58,7 @@ nav {
 
 nav ul {
     display: none;
-    background-color: lightblue;
+    background-color: rgb(132, 77, 0);
     box-shadow: 1px 2px 3px #555;
     list-style: none;
     position: absolute;
@@ -70,6 +75,7 @@ nav ul li {
 
 nav ul li a:hover {
     background-color: #ededed;
+    background-color: lightblue;
 }
 
 nav ul li a:active {

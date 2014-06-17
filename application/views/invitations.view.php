@@ -31,7 +31,7 @@ if(!class_exists('Invitations_View')) {
 
             $html = '';
 
-            $html .= '<div id="memberships">' . "\n";
+            $html .= '<div id="memberships" class="invite_holder">' . "\n";
 
             if(count($memberships) >= 1) {
                 $html .= '<table>' . "\n";
@@ -46,7 +46,9 @@ if(!class_exists('Invitations_View')) {
 
                 $html .= '</table>' . "\n";
             } else {
-                $html .= '<p>You are not member of any lists yet ...</p>' . "\n";
+                $html .= '<table>' . "\n";
+                $html .= '<td class="empty_row">You are not member of any lists yet ...</td>' . "\n";
+                $html .= '</table>' . "\n";
             }
 
             $html .= '</div> <!-- end #memberships -->' . "\n";
@@ -58,10 +60,12 @@ if(!class_exists('Invitations_View')) {
             $ownInvitations = $this->model->getOwnInvitations($_SESSION['user_id']);
 
             $html = '';
-            $html .= '<div id="own_invitations">' . "\n";
+            $html .= '<div id="own_invitations" class="invite_holder">' . "\n";
 
             if(count($ownInvitations) == 0) {
-                $html .= '<p>You have not invited anyone yet ...</p>' . "\n";
+                $html .= '<table>' . "\n";
+                $html .= '<td class="empty_row">You have not invited anyone yet ...</td>' . "\n";
+                $html .= '</table>' . "\n";
             } else {
                 $html .= '<table>' . "\n";
 
@@ -85,10 +89,12 @@ if(!class_exists('Invitations_View')) {
             $offeredInvitations = $this->model->getOfferedInvitations($_SESSION['user_id']);
 
             $html = '';
-            $html .= '<div id="offered_invitations">' . "\n";
+            $html .= '<div id="offered_invitations" class="invite_holder">' . "\n";
 
             if(count($offeredInvitations) == 0 ) {
-                $html .= '<p>There are no invitations for you at the moment ...</p>' . "\n";
+                $html .= '<table>' . "\n";
+                $html .= '<td class="empty_row">There are no invitations for you at the moment ...</td>' . "\n";
+                $html .= '</table>' . "\n";
             } else {
                 $html .= '<table>' . "\n";
                 foreach($offeredInvitations as $invitation) {
@@ -111,7 +117,7 @@ if(!class_exists('Invitations_View')) {
 
             $html = '';
 
-            $html .= '<div id="invite">' . "\n";
+            $html .= '<div id="invite" class="invite_holder">' . "\n";
 
             if(isset($_SESSION['errors']) && count($_SESSION['errors']) >= 1) {
                 $html .= $this->buildErrors($_SESSION['errors']);

@@ -19,8 +19,7 @@ if(!class_exists('Login_View')) {
             $html .= $this->buildHeader($this->page_id);
             $html .= '<div id="presentation">' . "\n";
             $html .= '<p>A simple, basic and free list making application!</p>' . "\n";
-            $html .= '<p>Create, update and share your lists where ever you go!</p>' . "\n";
-            $html .= '<p><a href="about.php">Read more about Lister!</a></p>' . "\n";
+            $html .= '<p>Create, update and share your lists where ever you go! <a href="about.php">Read more about Lister!</a></p>' . "\n";
             $html .= '</div> <!-- end #presentation -->' . "\n";
             $html .= $this->buildLoginForm();
 

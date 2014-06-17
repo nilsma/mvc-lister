@@ -42,9 +42,6 @@ if(!class_exists('Edit_Lists_View')) {
             $html .= '</div> <!-- end #add_list -->' . "\n";
             $html .= '<div id="lists_overview">' . "\n";
             $html .= '<table>' . "\n";
-            $html .= '<thead>' . "\n";
-            $html .= '<tr><td>My Lists:</td><td></td><td></td></tr>' . "\n";
-            $html .= '</thead>' . "\n";
 
             foreach($lists as $list_id => $user_id) {
                 $html .= '<tr><td>' . ucfirst($this->model->getListTitle($list_id)) . '</td><td><button class="edit_list">Edit</button></td><td><button class="remove_list">Remove</button></td></tr>' . "\n";

@@ -6,10 +6,6 @@ div#items {
     margin: auto;
 }
 
-div#items {
-    margin-bottom: 2em;
-}
-
 div#lists {
     display: flex;
     flex-flow: row;
@@ -58,70 +54,32 @@ div#lists option {
 }
 
 div#lists option.member {
-    //background-color: lightgray;
+    background-color: #e0dceb;
 }
 
 div#lists option.owner {
-    //background-color: white;
+    background-color: white;
 }
 
 div#lists form p:first-child {
     margin-bottom: 1em;
 }
 
-div#lists form p:first-child select {
-    background-color: white;
-    border: 1px solid white;
-    color: black;
-    font-size: 1em;
-    margin-right: 0.5em;
-    outline: none;
-    padding: 3px 3px 0 3px;
-    width: 100%;
-}
-
-div#lists form select option {
-    background-color: white;
-    margin-bottom: 2px;
-    padding: 2px 4px;
-    text-indent: 10px;
-}
-
-div#items table tr {
-    background-color: #16C62C;
-    //color: white;
-    font-size: 1.2em;
-}
-
-div#items table td:first-child {
-    background-color: green;
-    width: 100%;
-}
-
-div#items table td:first-child:hover {
+table td:first-child:hover {
     cursor: pointer;
-}
-
-div#items table tr td:last-child {
-    float: right;
 }
 
 div#items table tr td:last-child button:hover {
     cursor: pointer;
 }
 
-div#items table td {
-    padding: 0.25em;
-}
-
 div#items table td:first-child.tapped {
-    //background-color: rgb(128, 0, 0);
     background-color: rgb(185, 38, 53);
+    text-decoration: line-through;
     color: white;
 }
 
 div#items table td:first-child.untapped {
-    //background-color: rgb(0, 128, 0);
     background-color: rgb(8, 173, 68);
     color: whitesmoke;
 }
@@ -132,7 +90,29 @@ form input[type="text"] {
     text-indent: 5px;
 }
 
-div#items table td button:hover,
-input[type="submit"]:hover {
-    cursor: pointer;
+form#add_items_form {
+    text-align: center;
+}
+
+div#items {
+    margin-bottom: 2em;
+    width: 30em;
+}
+
+@media screen and (max-width: 359px) and (orientation: portrait) {
+    div#items {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    div#items {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 639px) and (orientation: landscape) {
+    div#items {
+        width: 80%;
+    }
 }

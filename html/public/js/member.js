@@ -25,10 +25,12 @@ function toggleItem() {
     var item_name = this.innerHTML;
 
     updateDatabaseFlag(item_name, function(result) {
-        if(window.getComputedStyle(el, null).getPropertyValue('background-color') === 'rgb(0, 128, 0)') {
-            el.style.backgroundColor='rgb(128, 0, 0)';
+        if(window.getComputedStyle(el, null).getPropertyValue('background-color') === 'rgb(8, 173, 68)') {
+            el.style.backgroundColor='rgb(185, 38, 53)';
+            el.style.textDecoration='line-through';
         } else {
-            el.style.backgroundColor='rgb(0, 128, 0)';
+            el.style.backgroundColor='rgb(8, 173, 68)';
+            el.style.textDecoration='none';
         }
     });
 }
@@ -175,6 +177,7 @@ function updateItems(callback) {
     });
 }
 
+/*
 setInterval(
     function() {
         updateItems(function() {
@@ -182,6 +185,7 @@ setInterval(
         });
     }, 3000
 );
+*/
 
 function init() {
     var elements = new Array();

@@ -1,3 +1,57 @@
+div.invite_holder:first-child {
+    width: auto;
+}
+
+div.invite_holder {
+    width: 100%;
+}
+
+div.invite_holder table {
+    margin: auto;
+    width: 30em;
+}
+
 div#invite form {
     text-align: center;
+}
+
+table td:first-child {
+    padding: 2px 4px;
+}
+
+p.empty_row {
+    margin-bottom: 0;
+    padding: 2px 4px;
+}
+
+div.invite_holder {
+    margin: 0 auto 1em;
+}
+
+form select {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+@media screen and (max-width: 359px) and (orientation: portrait) {
+    div.invite_holder table {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    form select {
+        width: 100%;
+    }
+
+    div.invite_holder table {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 639px) and (orientation: landscape) {
+    div.invite_holder table {
+        width: 80%;
+    }
 }

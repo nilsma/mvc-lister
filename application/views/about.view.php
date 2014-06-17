@@ -31,7 +31,7 @@ if(!class_exists('About_View')) {
             $html .= '<p>So you would probably not want to rely on Lister as a permanent storage of ';
             $html .= 'your lists - not yet anyway</p>' . "\n";
             $html .= '<p>Any feedback about the application\'s <a href="#">code</a> in particular, ';
-            $html .= 'or anything else, is most welcome at lister@nima-design.net</p>' . "\n";
+            $html .= 'or anything else, is most welcome at <a id="email" href="mailto:lister%40nima-design%2enet?subject=Web Design" title="Send me an email">lister@nima-design.net</a></p>';
             $html .= '<p><a href="register.php">Register</a> or <a href="login.php">login</a> to start using Lister.</p>' . "\n";
             $html .= '</div>' . "\n";
 
