@@ -91,8 +91,8 @@ function removeItem(itemName, callback) {
 }
 
 function loadList() {
-    var json = this.getAttribute('value');
-    var json = json.replace(/'/g, '"');
+    var json = this.options[this.selectedIndex].value;
+    json = json.replace(/'/g, '"');
     var obj = JSON.parse(json);
     var list_owner = obj.user;
     var list_title = obj.title;
@@ -127,12 +127,6 @@ function toggleAddList() {
     } else {
         el.style.display='none';
         this.innerHTML='+';
-    }
-}
-
-function addListeners(elements, funcName) {
-    for(var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('click', funcName, false);
     }
 }
 
@@ -185,6 +179,12 @@ setInterval(
     }, 3000
 );
 
+function addListeners(elements, funcName) {
+    for(var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('click', funcName, false);
+    }
+}
+
 function init() {
     var elements = new Array();
     elements = document.getElementsByClassName('remove_item');
@@ -200,13 +200,13 @@ function init() {
     addListeners(elements, toggleItem);
 
     var elements = new Array();
-    elements = document.getElementsByTagName('option');
-    addListeners(elements, loadList);
-
-    var elements = new Array();
     var element = document.getElementById('toggle_add_list');
     elements.push(element);
     addListeners(elements, toggleAddList);
+
+    var elements = new Array();
+    elements = document.getElementsByTagName('select');
+    elements[0].addEventListener('change', loadList, false);
 }
 
 window.onload = function() {
