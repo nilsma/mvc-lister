@@ -10,8 +10,15 @@ div#lists {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
+    margin-bottom: 1em;
     margin-top: 1em;
     width: 20em;
+}
+
+div#lists_inner {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
 }
 
 div#lists button {
