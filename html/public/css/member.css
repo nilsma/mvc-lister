@@ -11,6 +11,7 @@ div#lists {
     flex-flow: row;
     justify-content: space-between;
     margin-top: 1em;
+    width: 20em;
 }
 
 div#lists button {
@@ -21,15 +22,9 @@ div#lists button {
     line-height: 2px;
 }
 
-div#lists form {
-    margin: auto;
-    width: 20em;
-}
-
 div#add_list_form {
     display: none;
     margin: 0 auto 1.5em;
-    width: 20em;
 }
 
 div#lists h2,
@@ -53,6 +48,10 @@ div#items table {
 
 body#member form label {
     display: none;
+}
+
+div#lists select {
+    width: 18em;
 }
 
 div#lists option {
@@ -106,18 +105,29 @@ div#items {
 }
 
 @media screen and (max-width: 359px) and (orientation: portrait) {
+    div#lists select {
+        width: 14em;
+    }
+
+    div#lists,
     div#items {
         width: 100%;
     }
 }
 
 @media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    div#lists select {
+        width: 14em;
+    }
+
+    div#lists,
     div#items {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 639px) and (orientation: landscape) {
+    div#lists,
     div#items {
         width: 80%;
     }
