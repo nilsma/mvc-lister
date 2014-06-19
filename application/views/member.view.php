@@ -46,7 +46,6 @@ if(!class_exists('Member_View')) {
 
             $html .= '<div id="lists">' . "\n";
             $html .= '<h2>My lists:</h2>' . "\n";
-            $html .= '<div id="lists_inner">' . "\n";
 
             if(count($lists) >= 1) {
                 $html .= '<form name="load_list" action="' . $_SERVER['PHP_SELF'] . '" method="POST">' . "\n";
@@ -77,7 +76,6 @@ if(!class_exists('Member_View')) {
                 $html .= '<button id="toggle_add_list">+</button>' . "\n";
             }
 
-            $html .= '</div> <!-- end #lists_inner -->' . "\n";
             $html .= '</div> <!-- end #lists -->' . "\n";
 
             $html .= '<div id="add_list_form">' . "\n";

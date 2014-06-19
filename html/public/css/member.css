@@ -12,13 +12,10 @@ div#lists {
     justify-content: space-between;
     margin-bottom: 1em;
     margin-top: 1em;
-    width: 20em;
 }
 
-div#lists_inner {
-    display: flex;
-    flex-flow: row;
-    width: 100%;
+div#lists form {
+    float: left;
 }
 
 div#lists button {
@@ -57,10 +54,6 @@ body#member form label {
     display: none;
 }
 
-div#lists select {
-    width: 18em;
-}
-
 div#lists option {
     background-color: white;
 }
@@ -73,9 +66,11 @@ div#lists option.owner {
     background-color: white;
 }
 
+/*
 div#lists form p:first-child {
     margin-bottom: 1em;
 }
+*/
 
 table td:first-child:hover {
     cursor: pointer;
@@ -112,10 +107,6 @@ div#items {
 }
 
 @media screen and (max-width: 359px) and (orientation: portrait) {
-    div#lists select {
-        width: 14em;
-    }
-
     div#lists,
     div#items {
         width: 100%;
@@ -123,10 +114,6 @@ div#items {
 }
 
 @media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
-    div#lists select {
-        width: 14em;
-    }
-
     div#lists,
     div#items {
         width: 100%;
