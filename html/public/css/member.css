@@ -21,9 +21,15 @@ div#lists button {
     line-height: 2px;
 }
 
+div#lists form {
+    margin: auto;
+    width: 20em;
+}
+
 div#add_list_form {
     display: none;
     margin: 0 auto 1.5em;
+    width: 20em;
 }
 
 div#lists h2,
