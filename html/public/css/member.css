@@ -31,6 +31,10 @@ div#add_list_form {
     margin: 0 auto 1.5em;
 }
 
+div#add_list_form form {
+    margin: auto;
+}
+
 div#lists h2,
 div#items h2 {
     display: none;
