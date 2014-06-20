@@ -9,8 +9,10 @@ div#edit_password form {
     font-family: sans-serif;
 }
 
-div#edit_password form input {
+form input {
+    display: block;
     margin-bottom: 1em;
+    width: 100%;
 }
 
 div#edit_email {

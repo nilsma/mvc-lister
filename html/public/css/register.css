@@ -5,10 +5,18 @@ div#registration {
 div#registration form {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
 }
 
 div#registration p {
     margin-top: 1em;
     text-align: center;
+}
+
+div#registration form label {
+    display: block;
+}
+
+div#registration form input {
+    display: block;
+    width: 100%;
 }

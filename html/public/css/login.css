@@ -6,5 +6,15 @@ div#login p {
 div#login form {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+}
+
+div#login form input {
+    display: block;
+    margin: 0 auto 1em;
+    width: 100%;
+}
+
+div#login form label {
+    display: block;
+    text-align: left;
 }
