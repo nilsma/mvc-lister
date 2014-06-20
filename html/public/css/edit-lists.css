@@ -4,6 +4,7 @@ form input {
 
 div#add_list {
     display: block;
+    text-align: center;
 }
 
 div#add_list,
