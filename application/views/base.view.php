@@ -63,8 +63,10 @@ if(!class_exists('Base_View')) {
                 $html .= '<p>Logged in as <span>' . $_SESSION['username'] . '</span></p>' . "\n";
                 $html .= '</div>' . "\n";
                 $html .= '<div id="logo">' . "\n";
+                $html .= '<div id="logo_inner">' . "\n";
                 $html .= '<h1><a href="member.php">Lister</a></h1>' . "\n";
                 $html .= '<img id="hamburger" src="../../public/images/hamburger_black_small.png" alt="menu trigger image"/>' . "\n";
+                $html .= '</div> <!-- end #logo_inner -->' . "\n";
                 $html .= '</div> <!-- end #logo -->' . "\n";
                 $html .= $this->buildNavigation();
             } else {

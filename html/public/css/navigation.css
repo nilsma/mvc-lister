@@ -34,18 +34,17 @@ div#logo {
     position: relative;
 }
 
-div#logo p {
-    margin-top: 0.5em;
-    margin-right: 2em;
-    position: absolute;
-    right: 0;
+div#logo_inner {
+    margin: auto;
+    width: 10em;
 }
 
 div#logo img {
     border: 1px solid white;
     height: 30px;
     position: absolute;
-    right: 1em;
+      right: 10px;
+      top: 10px;
 }
 
 div#logo img:hover {

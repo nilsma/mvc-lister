@@ -17,6 +17,11 @@ div#lists {
 
 div#lists form {
     float: left;
+    width: 80%;
+}
+
+div#lists form select {
+    width: 100%;
 }
 
 div#lists button {

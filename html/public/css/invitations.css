@@ -1,8 +1,3 @@
-form {
-    margin: auto;
-    width: 20em;
-}
-
 div.invite_holder {
     width: 100%;
 }
@@ -31,12 +26,13 @@ div.invite_holder {
 
 form select {
     display: block;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em auto 1em;
+    width: 30%;
 }
 
 @media screen and (max-width: 359px) and (orientation: portrait) {
-    form {
+    form,
+    form select {
         width: 100%;
     }
 
@@ -46,7 +42,8 @@ form select {
 }
 
 @media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
-    form {
+    form,
+    form select {
         width: 100%;
     }
 
