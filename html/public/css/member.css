@@ -33,8 +33,9 @@ div#lists button {
 }
 
 div#add_list_form {
-    display: none;
+    display: block;
     margin: 0 auto 1.5em;
+    text-align: center;
 }
 
 div#add_list_form form {
