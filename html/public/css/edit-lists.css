@@ -2,6 +2,10 @@ form input {
     margin-top: 1em;
 }
 
+div#add_list {
+    display: block;
+}
+
 div#add_list,
 div#lists_overview {
     margin: auto;

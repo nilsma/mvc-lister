@@ -33,7 +33,7 @@ div#lists button {
 }
 
 div#add_list_form {
-    display: block;
+    display: none;
     margin: 0 auto 1.5em;
     text-align: center;
 }
