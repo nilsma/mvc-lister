@@ -122,7 +122,7 @@ function loadList() {
 function toggleAddList() {
     var el = document.getElementById('add_list_form');
     if(window.getComputedStyle(el, null).getPropertyValue('display') === 'none') {
-        el.style.display='flex';
+        el.style.display='block';
         this.innerHTML='-';
     } else {
         el.style.display='none';
