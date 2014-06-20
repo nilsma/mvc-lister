@@ -29,7 +29,6 @@ div#welcome p span {
 div#logo {
     display: flex;
     flex-flow: row;
-    justify-content: center;
     position: relative;
 }
 
