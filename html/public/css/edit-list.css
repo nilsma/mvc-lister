@@ -19,6 +19,9 @@ div#current_members h2 {
 }
 
 div#current_members p {
+    background-color: #08AD44;
+    border: 2px solid white;
+    padding: 0.25em;
     text-align: center;
 }
 
