@@ -1,0 +1,45 @@
+div#edit_list_title {
+    margin: 0 auto;
+    width: 30em;
+}
+
+div#edit_list_title form {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 2em;
+}
+
+div#current_members {
+    margin: 0 auto;
+    width: 30em;
+}
+
+div#current_members h2 {
+    margin-bottom: 0.5em;
+}
+
+div#current_members p {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+@media screen and (max-width: 359px) and (orientation: portrait) {
+    div#current_members {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    div#current_members {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 639px) and (orientation: landscape) {
+    div#current_members {
+        width: 80%;
+    }
+}

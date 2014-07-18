@@ -1,9 +1,4 @@
-function getListName(element, callback) {
-    var list_name = element.parentNode.parentNode.childNodes[0].innerHTML;
-    callback(encodeURIComponent(list_name));
-}
-
-function removeList(list_name) {
+function removeMember(member_name) {
     var result;
 
     if (window.XMLHttpRequest) {
@@ -15,29 +10,19 @@ function removeList(list_name) {
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             result = xmlhttp.responseText;
-            location.reload();
+            window.location.reload();
         }
     }
 
-    var param = "remove_list=".concat(list_name);
-    xmlhttp.open("POST", "../../edit-lists.php", true);
+    var param = "remove_member=".concat(member_name);
+    xmlhttp.open("POST", "../../edit-list.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(param);
 }
 
-function initRemoveList() {
-    var remove = confirm('Are you sure you want to delete this list?');
-
-    if(remove) {
-        getListName(this, function(list_name) {
-            removeList(list_name);
-        });
-    }
-}
-
-function initEditList() {
-    var list_title = this.parentNode.parentNode.childNodes[0].innerHTML;
-    alert(list_title);
+function initRemoveMember() {
+    var member = this.parentNode.parentNode.childNodes[1].innerHTML;
+    removeMember(member);
 }
 
 function closeMenuHandler(e) {
@@ -82,12 +67,8 @@ function init() {
     addListeners(elements, toggleMenu);
 
     var elements = new Array();
-    var elements = document.getElementsByClassName('remove_list');
-    addListeners(elements, initRemoveList);
-
-    var elements = new Array();
-    var elements = document.getElementsByClassName('edit_list');
-    addListeners(elements, initEditList);
+    var elements = document.getElementsByClassName('remove_member');
+    addListeners(elements, initRemoveMember);
 }
 
 window.onload = function() {

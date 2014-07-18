@@ -24,4 +24,10 @@ if(isset($_POST['remove_list'])) {
     exit();
 }
 
+if(isset($_POST['edit_list'])) {
+    $_SESSION['list_to_edit'] = $_POST['edit_list'];
+    header('Location: edit-list.php');
+    exit();
+}
+
 $view->render();

@@ -10,6 +10,7 @@ require_once '../application/models/register.model.php';
 require_once '../application/models/member.model.php';
 require_once '../application/models/edit-member.model.php';
 require_once '../application/models/edit-lists.model.php';
+require_once '../application/models/edit-list.model.php';
 require_once '../application/models/invitations.model.php';
 require_once '../application/models/logout.model.php';
 
@@ -19,6 +20,7 @@ require_once '../application/controllers/register.controller.php';
 require_once '../application/controllers/member.controller.php';
 require_once '../application/controllers/edit-member.controller.php';
 require_once '../application/controllers/edit-lists.controller.php';
+require_once '../application/controllers/edit-list.controller.php';
 require_once '../application/controllers/invitations.controller.php';
 require_once '../application/controllers/logout.controller.php';
 
@@ -29,6 +31,7 @@ require_once '../application/views/about.view.php';
 require_once '../application/views/member.view.php';
 require_once '../application/views/edit-member.view.php';
 require_once '../application/views/edit-lists.view.php';
+require_once '../application/views/edit-list.view.php';
 require_once '../application/views/invitations.view.php';
 
 /**
