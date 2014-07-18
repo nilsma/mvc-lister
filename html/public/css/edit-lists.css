@@ -37,6 +37,11 @@ div#lists_overview {
     width: 30em;
 }
 
+table form input {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 359px) and (orientation: portrait) {
     div#lists_overview {
         width: 100%;
