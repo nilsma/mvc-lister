@@ -4,7 +4,9 @@ div#edit_list_title {
 }
 
 div#edit_list_title form {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
     flex-flow: column;
     margin-bottom: 2em;
 }
