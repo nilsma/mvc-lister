@@ -37,20 +37,6 @@ div#logo_inner {
     width: 10em;
 }
 
-/*
-div#logo img {
-    border: 1px solid white;
-    height: 30px;
-    position: absolute;
-      right: 10px;
-      top: 10px;
-}
-
-div#logo img:hover {
-    cursor: pointer;
-}
-*/
-
 div#hamburger_holder {
     position: absolute;
     right: 10px;
@@ -63,6 +49,7 @@ div#hamburger_holder:hover {
 
 div#hamburger_holder img {
     border: 1px solid white;
+    height: 30px;
 }
 
 h3#num_inv {
