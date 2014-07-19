@@ -4,11 +4,12 @@ div#edit_list_title {
 }
 
 div#edit_list_title form {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    flex-flow: column;
+    display: block;
     margin-bottom: 2em;
+}
+
+div#edit_list_title form input {
+    width: 100%;
 }
 
 div#current_members {
@@ -38,12 +39,14 @@ table {
 }
 
 @media screen and (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+    div#edit_list_title,
     div#current_members {
         width: 100%;
     }
 }
 
-@media screen and (max-width: 639px) and (orientation: landscape) {
+@media screen and (max-width: 639px) {
+    div#edit_list_title,
     div#current_members {
         width: 80%;
     }

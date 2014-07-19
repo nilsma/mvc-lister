@@ -57,6 +57,7 @@ div#main_container {
     flex-flow: column;
     margin: auto;
     width: 100%;
+    width: 100%;
 }
 
 div#inner_container {
@@ -273,7 +274,11 @@ p a:visited {
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1919px) and (orientation: landscape) {
+@media screen and (min-width: 768px) and (max-width: 1367px) and (orientation: landscape) {
+
+}
+
+@media screen and (min-width: 1368px) and (max-width: 1919px) and (orientation: landscape) {
     div#login,
     div#registration {
         margin: auto;
