@@ -22,6 +22,7 @@ if(!class_exists('Base_View')) {
 
         public function buildNavigation() {
             $nav = $this->model->getNavigation();
+            $num_invitations = $this->model->getNumInvitations($_SESSION['user_id']);
 
             $html = '';
             $html .= '<nav>' . "\n";
@@ -30,6 +31,8 @@ if(!class_exists('Base_View')) {
             foreach($nav as $label => $url) {
                 if($label == 'logout') {
                     $html .= '<li><a href="#" onclick="return confirmLogout()">' . ucwords($label) . '</a></li>' . "\n";
+                } elseif($label == 'invitations') {
+                    $html .= '<li><a href="' . $url . '">' . ucwords($label) . ' (' . $num_invitations . ')' . '</a></li>' . "\n";
                 } else {
                     $html .= '<li><a href="' . $url . '">' . ucwords($label) . '</a></li>' . "\n";
                 }
@@ -59,13 +62,25 @@ if(!class_exists('Base_View')) {
             $html .= '<header>' . "\n";
 
             if(isset($_SESSION['auth'])) {
+                $num_invitations = $this->model->getNumInvitations($_SESSION['user_id']);
+
                 $html .= '<div id="welcome">' . "\n";
                 $html .= '<p>Logged in as <span>' . $_SESSION['username'] . '</span></p>' . "\n";
                 $html .= '</div>' . "\n";
                 $html .= '<div id="logo">' . "\n";
                 $html .= '<div id="logo_inner">' . "\n";
                 $html .= '<h1><a href="member.php">Lister</a></h1>' . "\n";
+
+                $html .= '<div id="hamburger_holder">' . "\n";
+
+                if($num_invitations >= 1) {
+                    $html .= '<h3 id="num_inv">' . $num_invitations . '</h3>' . "\n";
+                }
+
                 $html .= '<img id="hamburger" src="../../public/images/hamburger_black_small.png" alt="menu trigger image"/>' . "\n";
+
+                $html .= '</div> <!-- end #hamburger_holder -->' . "\n";
+
                 $html .= '</div> <!-- end #logo_inner -->' . "\n";
                 $html .= '</div> <!-- end #logo -->' . "\n";
                 $html .= $this->buildNavigation();

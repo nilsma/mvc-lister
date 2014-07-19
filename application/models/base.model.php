@@ -86,6 +86,28 @@ if(!class_exists('Base_Model')) {
             }
         }
 
+        public function getNumInvitations($user_id) {
+            $db = $this->connect();
+
+            $query = $db->real_escape_string("SELECT * FROM invitations WHERE user_id=?");
+
+            $stmt = $db->stmt_init();
+            if(!$stmt->prepare($query)) {
+                print("Failed to prepare query: " . $query . "\n");
+            } else {
+                $stmt->bind_param('i', $user_id);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->fetch();
+                $num_rows = $stmt->num_rows;
+
+                return $num_rows;
+            }
+
+            $stmt->close();
+            $db->close();
+        }
+
         public function getListId($title, $user_id = false) {
             if(!$user_id) {
                 $user_id = $_SESSION['user_id'];
